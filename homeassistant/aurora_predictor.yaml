@@ -1,0 +1,87 @@
+# ===============================
+# NOAA Aurora + GPSD Coordinates (safe version)
+# ===============================
+
+rest:
+  - resource: https://services.swpc.noaa.gov/json/ovation_aurora_latest.json
+    scan_interval: 300
+    sensor:
+      - name: "NOAA Aurora Raw"
+        value_template: "{{ value_json['Forecast Time'] }}"
+        json_attributes:
+          - Forecast Time
+          - coordinates
+
+  - resource: https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json
+    scan_interval: 600
+    sensor:
+      - name: "NOAA Planetary K Forecast Raw"
+        value_template: >-
+          {% set j = value_json %}
+          {% if j is string %}
+            unavailable
+          {% else %}
+            {{ j[-1] if j|length > 0 else 'unavailable' }}
+          {% endif %}
+        json_attributes:
+          - data
+
+template:
+  - trigger:
+      # Update when NOAA data or GPS changes
+      - platform: state
+        entity_id:
+          - sensor.noaa_aurora_raw
+          - sensor.gps_127_0_0_1_latitude
+          - sensor.gps_127_0_0_1_longitude
+    sensor:
+      - name: "Aurora Probability Local"
+        unique_id: "aurora_probability_local_gpsd"
+        state: >
+          {% set coords = state_attr('sensor.noaa_aurora_raw','coordinates') %}
+          {% set lat = states('sensor.gps_127_0_0_1_latitude')|float(0) %}
+          {% set lon = states('sensor.gps_127_0_0_1_longitude')|float(0) %}
+          {% if not coords or lat == 0 and lon == 0 %}
+            unavailable
+          {% else %}
+            {% set step = (coords|length // 500) if (coords|length > 500) else 1 %}
+            {% set ns = namespace(min=1e12, best=None) %}
+            {% for i in range(0, coords|length, step) %}
+              {% set c = coords[i] %}
+              {% set c_lon = c[0]|float(0) %}
+              {% set c_lat = c[1]|float(0) %}
+              {% set val = c[2]|float(0) %}
+              {% set d = ((c_lat - lat)**2 + (c_lon - lon)**2) %}
+              {% if d < ns.min %}
+                {% set ns.min = d %}
+                {% set ns.best = val %}
+              {% endif %}
+            {% endfor %}
+            {% if ns.best is not none %}
+              {{ (ns.best * 100)|round(1) }}
+            {% else %}
+              unavailable
+            {% endif %}
+          {% endif %}
+        unit_of_measurement: "%"
+        state_class: measurement
+        attributes:
+          source: "NOAA OVATION via services.swpc.noaa.gov"
+          last_update: "{{ states('sensor.noaa_aurora_raw') }}"
+          latitude: "{{ states('sensor.gps_127_0_0_1_latitude') }}"
+          longitude: "{{ states('sensor.gps_127_0_0_1_longitude') }}"
+
+      - name: "Planetary K Index"
+        unique_id: "planetary_k_index_current"
+        state: >-
+          {% set data = state_attr('sensor.noaa_planetary_k_forecast_raw', 'data') %}
+          {% if data and data[-1] is defined %}
+            {{ data[-1][1]|float(0) }}
+          {% else %}
+            unavailable
+          {% endif %}
+        unit_of_measurement: "Kp"
+        state_class: measurement
+        attributes:
+          source: "NOAA SWPC"
+          last_update: "{{ states('sensor.noaa_planetary_k_forecast_raw') }}"
