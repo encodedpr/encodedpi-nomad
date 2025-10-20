@@ -1,0 +1,61 @@
+# ===============================
+# Home Address + Broadcastify link
+# ===============================
+
+rest:
+  - resource_template: >-
+      https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat={{ state_attr('zone.home','latitude') | default(0) }}&lon={{ state_attr('zone.home','longitude') | default(0) }}&addressdetails=1
+    scan_interval: 900
+    sensor:
+      - name: "Home Location (Nominatim)"
+        value_template: >-
+          {% set lat = state_attr('zone.home','latitude') %}
+          {% set lon = state_attr('zone.home','longitude') %}
+          {% if lat is none or lon is none %}
+            unavailable
+          {% else %}
+            {{ value_json.display_name }}
+          {% endif %}
+        json_attributes:
+          - address
+
+
+template:
+  - sensor:
+      - name: "Home Full Address"
+        state: "{{ states('sensor.home_location_nominatim') }}"
+        icon: mdi:home-map-marker
+
+      - name: "Home County"
+        state: >-
+          {{ state_attr('sensor.home_location_nominatim','address').county
+             | default(state_attr('sensor.home_location_nominatim','address').state_district)
+             | default('') }}
+        icon: mdi:map
+
+      - name: "Home State"
+        state: "{{ state_attr('sensor.home_location_nominatim','address').state | default('') }}"
+        icon: mdi:map-marker-radius
+
+      - name: "Home Street"
+        state: >-
+          {% set addr = state_attr('sensor.home_location_nominatim','address') %}
+          {{ addr.road | default(addr.pedestrian, '') }}
+        icon: mdi:road
+
+      - name: "Home City"
+        state: >-
+          {% set addr = state_attr('sensor.home_location_nominatim','address') %}
+          {{ addr.city | default(addr.town, '') | default(addr.village, '') }}
+        icon: mdi:city
+
+      - name: "Local Broadcastify Link"
+        icon: mdi:radio-tower
+        state: >-
+          {% set county = states('sensor.home_county') | regex_replace(' County$', '') %}
+          {% set state = states('sensor.home_state') %}
+          {% if county and state %}
+            https://www.broadcastify.com/listen/ctid/{{ county | replace(' ', '_') }}_{{ state | replace(' ', '_') }}
+          {% else %}
+            unavailable
+          {% endif %}
