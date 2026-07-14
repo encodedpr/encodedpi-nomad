@@ -1,0 +1,32 @@
+- id: '1751082236004'
+  alias: Update Home Location From GPSD
+  description: Update Home Assistant home location from GPSD sensors
+  triggers:
+  - entity_id:
+    - sensor.gps_127_0_0_1_latitude
+    - sensor.gps_127_0_0_1_longitude
+    trigger: state
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  conditions: []
+  actions:
+  - data:
+      latitude: '{{ states(''sensor.gps_127_0_0_1_latitude'') | float }}'
+      longitude: '{{ states(''sensor.gps_127_0_0_1_longitude'') | float }}'
+    action: homeassistant.set_location
+  mode: restart
+- id: '1765134293621'
+  alias: Reload Restful
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.starlink_connectivity
+  conditions: []
+  actions:
+  - action: rest.reload
+    metadata: {}
+    data: {}
+  mode: single

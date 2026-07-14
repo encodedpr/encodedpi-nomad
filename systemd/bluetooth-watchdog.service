@@ -1,0 +1,10 @@
+[Unit]
+Description=EncodedPi Bluetooth adapter health check
+After=bluetooth.service
+Wants=bluetooth.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/bluetooth-watchdog.sh
+User=root
+TimeoutStartSec=4min

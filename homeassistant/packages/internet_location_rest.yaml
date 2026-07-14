@@ -1,0 +1,44 @@
+rest:
+  - resource: https://ipinfo.io/json
+    scan_interval: 3600
+    sensor:
+      - name: "IP INFO"
+        value_template: >
+          {% set org = value_json.org %}
+          {% if org and ' ' in org %}
+            {{ org.split(' ', 1)[1] }}
+          {% else %}
+            {{ org }}
+          {% endif %}
+        json_attributes:
+          - ip
+          - city
+          - region
+          - country
+          - loc
+          - org
+
+
+  - resource: https://services.swpc.noaa.gov/json/ovation_aurora_latest.json
+    scan_interval: 3600
+    sensor:
+      - name: "NOAA Aurora Raw"
+        value_template: >
+          {% if value_json is mapping and 'Forecast Time' in value_json %}
+            {{ value_json['Forecast Time'] }}
+          {% else %}
+            unavailable
+          {% endif %}
+        json_attributes:
+          - Forecast Time
+          - coordinates
+
+  - resource_template: >
+      https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat={{ state_attr('zone.home','latitude')|default(0) }}&lon={{ state_attr('zone.home','longitude')|default(0) }}&addressdetails=1
+    scan_interval: 3600
+    sensor:
+      - name: "Home Location Nominatim"
+        value_template: >
+          {{ value_json.display_name if value_json.display_name is defined else 'unknown' }}
+        json_attributes:
+          - address

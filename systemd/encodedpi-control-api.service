@@ -1,0 +1,22 @@
+[Unit]
+Description=EncodedPi local system control API
+After=network-online.target docker.service
+Wants=network-online.target docker.service
+Conflicts=kismet-agent.service
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/local/bin/encodedpi-control-api.py
+Restart=always
+RestartSec=2
+User=root
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=read-only
+ProtectSystem=strict
+ReadWritePaths=/home/encoded/containers/homeassist/config
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

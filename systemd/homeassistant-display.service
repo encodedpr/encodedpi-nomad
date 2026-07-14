@@ -1,0 +1,19 @@
+[Unit]
+Description=Home Assistant frontend on the local display
+After=graphical.target docker.service
+Wants=graphical.target docker.service
+Conflicts=video_display_stream.service
+
+[Service]
+Type=simple
+User=encoded
+Environment=DISPLAY=:0
+Environment=HOME=/home/encoded
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+ExecStartPre=/bin/sh -c 'for i in $(seq 1 60); do /usr/bin/curl -fsS http://127.0.0.1:8123/ -o /dev/null && exit 0; sleep 2; done; exit 1'
+ExecStart=/usr/bin/firefox --kiosk --new-instance http://127.0.0.1:8123/van-command/overview
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical.target

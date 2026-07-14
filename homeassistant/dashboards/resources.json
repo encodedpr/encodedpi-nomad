@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "id": "bb14b5e14ae34e92af89d218724dc530",
+        "url": "/hacsfiles/lovelace-template-entity-row/template-entity-row.js?hacstag=231674882141",
+        "type": "module"
+      },
+      {
+        "id": "383382f3ef2c401b8feca0bfe9534e5f",
+        "url": "/hacsfiles/weather-radar-card/weather-radar-card.js?hacstag=487680971362",
+        "type": "module"
+      },
+      {
+        "id": "16db6707569d49fb9cc828a843b1291a",
+        "url": "/hacsfiles/Venus-OS-Dashboard/Venus-OS-Dashboard.js?hacstag=925327260070",
+        "type": "module"
+      },
+      {
+        "id": "7ac8a9cde27142188800155d1df3d5e6",
+        "url": "/hacsfiles/lovelace-solar-card/solar-card.js?hacstag=1050656026081",
+        "type": "module"
+      },
+      {
+        "id": "506ca7e18e5d47b39bf6526453cfa8c5",
+        "url": "/hacsfiles/TimeFlow-Card/timeflow-card.js?hacstag=102230755434",
+        "type": "module"
+      },
+      {
+        "id": "09acb3034a4740eb9bb66cbfb7afe753",
+        "url": "/hacsfiles/lovelace-mushroom-better-sliders/mushroom.js?hacstag=586363416302",
+        "type": "module"
+      },
+      {
+        "id": "3c7179a801b14271b80eeb0da2bd0b39",
+        "url": "/webrtc/webrtc-camera.js?v=v3.6.1",
+        "type": "module"
+      },
+      {
+        "id": "91c921bea8024a6eb5fac7b405de9d2e",
+        "url": "/hacsfiles/lovelace-battery-entity-row/battery-entity-row.js?hacstag=303857065131",
+        "type": "module"
+      },
+      {
+        "id": "9f923c009814427397626d4938021bf7",
+        "url": "/hacsfiles/battery-state-card/battery-state-card.js?hacstag=256292682420",
+        "type": "module"
+      },
+      {
+        "id": "6d943fbe815b4de29d553f9bb2b55e57",
+        "url": "/hacsfiles/auto-entities/auto-entities.js?v=1.16.1",
+        "type": "module"
+      },
+      {
+        "id": "3f5bb33d3d684d768f12d57355f377a6",
+        "url": "/hacsfiles/power-flow-card-plus/power-flow-card-plus.js?v=0.3.7",
+        "type": "module"
+      },
+      {
+        "id": "55e9512f4a4a489faf6d9ad040aeb91a",
+        "url": "/hacsfiles/lovelace-card-mod/card-mod.js?v=4.2.1",
+        "type": "module"
+      }
+    ]
+  }
+}

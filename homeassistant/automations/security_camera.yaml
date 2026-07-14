@@ -1,0 +1,21 @@
+- id: '1778438963440'
+  alias: Motion Activated Snapshot
+  description: Capture locally on motion-on only while parked; cooldown suppresses motion bouncing.
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.mjpeg_motion
+    to: 'on'
+  conditions:
+  - condition: state
+    entity_id: input_boolean.drive_mode
+    state: 'off'
+  actions:
+  - action: camera.snapshot
+    target:
+      entity_id: camera.mjpeg_camera
+    data:
+      filename: /config/snapshots/dvr_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg
+    continue_on_error: true
+  - delay: 00:00:10
+  mode: single
+  max_exceeded: silent

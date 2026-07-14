@@ -1,0 +1,20 @@
+[Unit]
+Description=Security camera feed on the local display
+After=graphical.target mjpeg-camera.service
+Wants=graphical.target mjpeg-camera.service
+Conflicts=homeassistant-display.service
+
+[Service]
+Type=simple
+User=encoded
+Environment=DISPLAY=:0
+Environment=HOME=/home/encoded
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+ExecStartPre=/bin/sh -c 'for i in $(seq 1 30); do /usr/bin/nc -z 127.0.0.1 8090 && exit 0; sleep 1; done; exit 1'
+ExecStart=/usr/local/bin/ffplay -fs -noborder -volume 0 http://127.0.0.1:8090
+SuccessExitStatus=123
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical.target

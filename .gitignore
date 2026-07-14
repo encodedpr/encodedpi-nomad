@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.log
+*.db
+*.sqlite*
+.env
+.env.*
+secrets.yaml
+passwd
+*.pem
+*.key
+*.env
+!*.env.example
+exports/
+output/
+evidence/

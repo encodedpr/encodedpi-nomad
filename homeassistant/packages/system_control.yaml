@@ -1,0 +1,52 @@
+shell_command:
+  restart_mjpeg_camera: "curl --fail --silent --show-error --max-time 30 -X POST http://127.0.0.1:8765/mjpeg/restart"
+  restart_security_feed: "curl --fail --silent --show-error --max-time 60 -X POST http://127.0.0.1:8765/security/restart"
+  reboot_encodedpi: "curl --fail --silent --show-error --max-time 30 -X POST http://127.0.0.1:8765/reboot"
+command_line:
+
+  - switch:
+      name: "Kismet Service"
+      unique_id: kismet_service_control
+      command_on: >
+        curl --fail --silent --show-error --max-time 30 -X POST http://127.0.0.1:8765/kismet/on
+      command_off: >
+        curl --fail --silent --show-error --max-time 30 -X POST http://127.0.0.1:8765/kismet/off
+      command_state: >
+        curl --fail --silent --show-error --max-time 10 http://127.0.0.1:8765/kismet/state
+      value_template: "{{ value == 'active' }}"
+
+  - switch:
+      name: "MJPEG Camera Service"
+      unique_id: mjpeg_camera_service_control
+      command_on: >
+        curl --fail --silent --show-error --max-time 30 -X POST http://127.0.0.1:8765/mjpeg/on
+      command_off: >
+        curl --fail --silent --show-error --max-time 30 -X POST http://127.0.0.1:8765/mjpeg/off
+      command_state: >
+        curl --fail --silent --show-error --max-time 10 http://127.0.0.1:8765/mjpeg/state
+      value_template: "{{ value == 'active' }}"
+
+  - switch:
+      name: "Security Feed Display"
+      unique_id: security_feed_display_control
+      command_on: >
+        curl --fail --silent --show-error --max-time 30 -X POST http://127.0.0.1:8765/display/security
+      command_off: >
+        curl --fail --silent --show-error --max-time 30 -X POST http://127.0.0.1:8765/display/homeassistant
+      command_state: >
+        curl --fail --silent --show-error --max-time 10 http://127.0.0.1:8765/display/state
+      value_template: "{{ value == 'security' }}"
+
+  - sensor:
+      name: "Snapshot Archive Status"
+      unique_id: snapshot_archive_status
+      command: "cat /config/snapshot_sync_status.json"
+      value_template: "{{ value_json.status }}"
+      json_attributes:
+        - local_images
+        - remote_images
+        - last_attempt
+        - destination
+        - message
+      scan_interval: 60
+      command_timeout: 5

@@ -1,0 +1,29 @@
+sensor:
+  - platform: integration
+    source: sensor.raspberry_pi_estimated_power
+    name: Raspberry Pi Energy
+    unique_id: raspberry_pi_energy_kwh
+    unit_prefix: k
+    round: 4
+    method: trapezoidal
+    max_sub_interval: "00:05:00"
+
+  - platform: integration
+    source: sensor.mppt_70_power
+    name: MPPT 70 Lifetime Integrated Energy
+    unique_id: mppt_70_lifetime_integrated_energy
+    unit_prefix: k
+    round: 4
+    method: left
+    max_sub_interval: "00:05:00"
+
+utility_meter:
+  mppt_70_solar_energy_today:
+    source: sensor.mppt_70_lifetime_integrated_energy
+    name: MPPT 70 Solar Energy Today
+    unique_id: mppt_70_solar_energy_today
+    cycle: daily
+    always_available: true
+# ===============================
+# TEMPLATE SENSORS
+# ===============================

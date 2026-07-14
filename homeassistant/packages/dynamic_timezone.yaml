@@ -1,0 +1,26 @@
+rest:
+  - resource_template: >
+      {% set latitude = states('sensor.gps_127_0_0_1_latitude') if has_value('sensor.gps_127_0_0_1_latitude') else state_attr('zone.home', 'latitude') %}
+      {% set longitude = states('sensor.gps_127_0_0_1_longitude') if has_value('sensor.gps_127_0_0_1_longitude') else state_attr('zone.home', 'longitude') %}
+      https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={{ latitude }}&longitude={{ longitude }}&localityLanguage=en
+    scan_interval: 900
+    sensor:
+      - name: "Van Time Zone"
+        unique_id: van_time_zone
+        icon: mdi:map-clock
+        value_template: >
+          {% set ns = namespace(zone='unknown') %}
+          {% if value_json.get('latitude') is not none and value_json.get('longitude') is not none %}
+            {% for item in value_json.get('localityInfo', {}).get('informative', []) %}
+              {% if item.get('description') == 'time zone' %}
+                {% set ns.zone = item.get('name', 'unknown') %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          {{ ns.zone }}
+
+shell_command:
+  update_van_timezone: >-
+    curl --fail --silent --show-error --max-time 150
+    --data-urlencode "zone={{ zone | regex_replace('[^A-Za-z0-9_+./-]', '') }}"
+    http://127.0.0.1:8765/timezone/update

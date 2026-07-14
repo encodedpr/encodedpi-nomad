@@ -1,0 +1,56 @@
+- id: '1778296920364'
+  alias: Indoor lights on when cell enters zone
+  description: ''
+  triggers:
+  - device_id: 39d762b13da1afe576d3e4a4be1aad13
+    domain: device_tracker
+    entity_id: 659ae8ed37354adafa6ff4b79be885da
+    type: enters
+    trigger: device
+    zone: zone.home
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.smart_wi_fi_rgbw
+    data:
+      brightness_pct: 100
+      white: true
+  mode: single
+- id: '1778297141070'
+  alias: Indoor lights off when cell exits zone
+  description: ''
+  triggers:
+  - device_id: 39d762b13da1afe576d3e4a4be1aad13
+    domain: device_tracker
+    entity_id: 659ae8ed37354adafa6ff4b79be885da
+    type: leaves
+    trigger: device
+    zone: zone.home
+  conditions:
+  - condition: device
+    device_id: 39d762b13da1afe576d3e4a4be1aad13
+    domain: device_tracker
+    entity_id: 659ae8ed37354adafa6ff4b79be885da
+    type: is_home
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - light.smart_wi_fi_rgbw
+    data: {}
+  mode: single
+- id: '1778301657062'
+  alias: Motion Activated Lights
+  description: ''
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      motion_entity: binary_sensor.mjpeg_motion
+      light_target:
+        entity_id:
+        - light.smart_wi_fi_dimmer
+        - light.front
+      no_motion_wait: 1

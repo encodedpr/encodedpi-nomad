@@ -1,0 +1,20 @@
+[Unit]
+Description=MJPEG Camera Server
+After=network.target
+ConditionPathExists=/dev/video0
+
+[Service]
+Type=simple
+User=encoded
+SupplementaryGroups=video
+WorkingDirectory=/usr/local/bin
+ExecStart=/usr/bin/python3 /usr/local/bin/mjpeg_server.py
+Restart=always
+RestartSec=2
+
+# Stability tuning
+Nice=-5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

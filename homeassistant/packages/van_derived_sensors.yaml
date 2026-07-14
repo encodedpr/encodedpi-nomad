@@ -1,0 +1,439 @@
+template:
+  - sensor:
+      - name: "Van Internet ISP"
+        unique_id: van_internet_isp
+        icon: mdi:wan
+        state: >
+          {% if is_state('binary_sensor.van_internet_healthy', 'on') %}
+            {% set isp = states('sensor.ip_info') %}
+            {{ isp if isp not in ['unknown', 'unavailable', ''] else 'Connected' }}
+          {% else %}
+            Disconnected
+          {% endif %}
+  # Curated Black Box samples: location, power, ambient, connectivity, and equipment health.
+  - triggers:
+      - trigger: homeassistant
+        event: start
+      - trigger: time_pattern
+        seconds: "/10"
+    sensor:
+      - name: "Skynet Mirror GPS Latitude"
+        unique_id: skynet_mirror_gps_latitude
+        state: "{{ states('sensor.gps_127_0_0_1_latitude') }}"
+        availability: "{{ has_value('sensor.gps_127_0_0_1_latitude') }}"
+      - name: "Skynet Mirror GPS Longitude"
+        unique_id: skynet_mirror_gps_longitude
+        state: "{{ states('sensor.gps_127_0_0_1_longitude') }}"
+        availability: "{{ has_value('sensor.gps_127_0_0_1_longitude') }}"
+      - name: "Skynet Mirror GPS Speed"
+        unique_id: skynet_mirror_gps_speed
+        state: "{{ states('sensor.gps_127_0_0_1_speed') }}"
+        availability: "{{ has_value('sensor.gps_127_0_0_1_speed') }}"
+  - triggers:
+      - trigger: homeassistant
+        event: start
+      - trigger: time_pattern
+        minutes: "/1"
+    sensor:
+      - name: "Skynet Mirror Heartbeat"
+        unique_id: skynet_mirror_heartbeat
+        device_class: timestamp
+        state: "{{ now().isoformat() }}"
+      - name: "Skynet Mirror GPS Elevation"
+        unique_id: skynet_mirror_gps_elevation
+        state: "{{ states('sensor.gps_127_0_0_1_elevation') }}"
+        availability: "{{ has_value('sensor.gps_127_0_0_1_elevation') }}"
+      - name: "Skynet Mirror GPS Fix Mode"
+        unique_id: skynet_mirror_gps_mode
+        state: "{{ states('sensor.gps_127_0_0_1_mode') }}"
+        availability: "{{ has_value('sensor.gps_127_0_0_1_mode') }}"
+      - name: "Skynet Mirror GPS Used Satellites"
+        unique_id: skynet_mirror_gps_used_satellites
+        state: "{{ states('sensor.gps_127_0_0_1_used_satellites') }}"
+        availability: "{{ has_value('sensor.gps_127_0_0_1_used_satellites') }}"
+      - name: "Skynet Mirror Battery SOC"
+        unique_id: skynet_mirror_battery_soc
+        state: "{{ states('sensor.battery_shunt_battery') }}"
+        availability: "{{ has_value('sensor.battery_shunt_battery') }}"
+      - name: "Skynet Mirror Battery Voltage"
+        unique_id: skynet_mirror_battery_voltage
+        state: "{{ states('sensor.battery_shunt_voltage') }}"
+        availability: "{{ has_value('sensor.battery_shunt_voltage') }}"
+      - name: "Skynet Mirror Battery Net Power"
+        unique_id: skynet_mirror_battery_power
+        state: "{{ states('sensor.battery_shunt_power') }}"
+        availability: "{{ has_value('sensor.battery_shunt_power') }}"
+      - name: "Skynet Mirror Battery Runtime"
+        unique_id: skynet_mirror_battery_runtime
+        state: "{{ states('sensor.calculated_battery_time') }}"
+        availability: "{{ has_value('sensor.calculated_battery_time') }}"
+      - name: "Skynet Mirror Total Power Consumption"
+        unique_id: skynet_mirror_power_consumption
+        state: "{{ states('sensor.power_consumption') }}"
+        availability: "{{ has_value('sensor.power_consumption') }}"
+      - name: "Skynet Mirror Solar Power"
+        unique_id: skynet_mirror_solar_power
+        state: "{{ states('sensor.mppt_70_power') }}"
+        availability: "{{ has_value('sensor.mppt_70_power') }}"
+      - name: "Skynet Mirror Shore Power"
+        unique_id: skynet_mirror_shore_power
+        state: "{{ states('sensor.shore_power_30a_output_power_1') }}"
+        availability: "{{ has_value('sensor.shore_power_30a_output_power_1') }}"
+      - name: "Skynet Mirror DC DC Power"
+        unique_id: skynet_mirror_dc_dc_power
+        state: "{{ states('sensor.dc_dc_xs_output_power') }}"
+        availability: "{{ has_value('sensor.dc_dc_xs_output_power') }}"
+      - name: "Skynet Mirror Starlink Ping"
+        unique_id: skynet_mirror_starlink_ping
+        state: "{{ states('sensor.starlink_ping') }}"
+        availability: "{{ has_value('sensor.starlink_ping') }}"
+      - name: "Skynet Mirror Starlink Ping Drop Rate"
+        unique_id: skynet_mirror_starlink_ping_drop_rate
+        state: "{{ states('sensor.starlink_ping_drop_rate') }}"
+        availability: "{{ has_value('sensor.starlink_ping_drop_rate') }}"
+      - name: "Skynet Mirror Battery Alarm Reason"
+        unique_id: skynet_mirror_battery_alarm_reason
+        state: "{{ states('sensor.battery_shunt_alarm_reason') }}"
+        availability: "{{ has_value('sensor.battery_shunt_alarm_reason') }}"
+      - name: "Skynet Mirror MPPT Charger Error"
+        unique_id: skynet_mirror_mppt_charger_error
+        state: "{{ states('sensor.mppt_70_charger_error') }}"
+        availability: "{{ has_value('sensor.mppt_70_charger_error') }}"
+      - name: "Skynet Mirror DC DC Charger Error"
+        unique_id: skynet_mirror_dc_dc_charger_error
+        state: "{{ states('sensor.dc_dc_xs_charger_error') }}"
+        availability: "{{ has_value('sensor.dc_dc_xs_charger_error') }}"
+      - name: "Skynet Mirror Shore Charger Error"
+        unique_id: skynet_mirror_shore_charger_error
+        state: "{{ states('sensor.shore_power_30a_charger_error') }}"
+        availability: "{{ has_value('sensor.shore_power_30a_charger_error') }}"
+  - triggers:
+      - trigger: homeassistant
+        event: start
+      - trigger: time_pattern
+        minutes: "/5"
+    sensor:
+      - name: "Skynet Mirror Living Area Temperature"
+        unique_id: skynet_mirror_living_temperature
+        state: "{{ states('sensor.meter_1c97_temperature') }}"
+        availability: "{{ has_value('sensor.meter_1c97_temperature') }}"
+      - name: "Skynet Mirror Living Area Humidity"
+        unique_id: skynet_mirror_living_humidity
+        state: "{{ states('sensor.meter_1c97_humidity') }}"
+        availability: "{{ has_value('sensor.meter_1c97_humidity') }}"
+      - name: "Skynet Mirror Cabin Temperature"
+        unique_id: skynet_mirror_cabin_temperature
+        state: "{{ states('sensor.meter_3732_temperature') }}"
+        availability: "{{ has_value('sensor.meter_3732_temperature') }}"
+      - name: "Skynet Mirror Cabin Humidity"
+        unique_id: skynet_mirror_cabin_humidity
+        state: "{{ states('sensor.meter_3732_humidity') }}"
+        availability: "{{ has_value('sensor.meter_3732_humidity') }}"
+      - name: "Skynet Mirror Sink Temperature"
+        unique_id: skynet_mirror_sink_temperature
+        state: "{{ states('sensor.sink_temperature') }}"
+        availability: "{{ has_value('sensor.sink_temperature') }}"
+      - name: "Skynet Mirror Sink Humidity"
+        unique_id: skynet_mirror_sink_humidity
+        state: "{{ states('sensor.sink_humidity') }}"
+        availability: "{{ has_value('sensor.sink_humidity') }}"
+      - name: "Skynet Mirror Outdoor Temperature"
+        unique_id: skynet_mirror_outdoor_temperature
+        state: "{{ states('sensor.outdoor_temperature') }}"
+        availability: "{{ has_value('sensor.outdoor_temperature') }}"
+      - name: "Skynet Mirror Outdoor Humidity"
+        unique_id: skynet_mirror_outdoor_humidity
+        state: "{{ states('sensor.outdoor_humidity') }}"
+        availability: "{{ has_value('sensor.outdoor_humidity') }}"
+      - name: "Skynet Mirror Equipment Temperature"
+        unique_id: skynet_mirror_equipment_temperature
+        state: "{{ states('sensor.meter_b62a_temperature') }}"
+        availability: "{{ has_value('sensor.meter_b62a_temperature') }}"
+      - name: "Skynet Mirror Equipment Humidity"
+        unique_id: skynet_mirror_equipment_humidity
+        state: "{{ states('sensor.meter_b62a_humidity') }}"
+        availability: "{{ has_value('sensor.meter_b62a_humidity') }}"
+      - name: "Skynet Mirror Router CPU Temperature"
+        unique_id: skynet_mirror_router_cpu_temperature
+        state: "{{ states('sensor.gl_inet_x3000_cpu_temperature') }}"
+        availability: "{{ has_value('sensor.gl_inet_x3000_cpu_temperature') }}"
+      - name: "Skynet Mirror Router Memory Usage"
+        unique_id: skynet_mirror_router_memory_usage
+        state: "{{ states('sensor.gl_inet_x3000_memory_usage') }}"
+        availability: "{{ has_value('sensor.gl_inet_x3000_memory_usage') }}"
+      - name: "Skynet Mirror Router Uptime"
+        unique_id: skynet_mirror_router_uptime
+        state: "{{ states('sensor.gl_inet_x3000_uptime') }}"
+        availability: "{{ has_value('sensor.gl_inet_x3000_uptime') }}"
+      - name: "Skynet Mirror Encodedpi Processor Temperature"
+        unique_id: skynet_mirror_encodedpi_processor_temperature
+        state: "{{ states('sensor.system_monitor_processor_temperature') }}"
+        availability: "{{ has_value('sensor.system_monitor_processor_temperature') }}"
+      - name: "Skynet Mirror Encodedpi Memory Usage"
+        unique_id: skynet_mirror_encodedpi_memory_usage
+        state: "{{ states('sensor.system_monitor_memory_usage') }}"
+        availability: "{{ has_value('sensor.system_monitor_memory_usage') }}"
+      - name: "Skynet Mirror Encodedpi Disk Free"
+        unique_id: skynet_mirror_encodedpi_disk_free
+        state: "{{ states('sensor.system_monitor_disk_free') }}"
+        availability: "{{ has_value('sensor.system_monitor_disk_free') }}"
+  - button:
+      - name: Restart MJPEG Camera
+        press:
+          action: shell_command.restart_mjpeg_camera
+
+      - name: Restart Security Feed
+        press:
+          action: shell_command.restart_security_feed
+
+      - name: Reboot Pi
+        press:
+          action: shell_command.reboot_encodedpi
+
+  # -----------------------
+  # Triggered Sensors: Aurora + K Index
+  # -----------------------
+  - trigger:
+
+      - platform: state
+        entity_id:
+          - sensor.noaa_aurora_raw
+          - zone.home
+
+    sensor:
+
+      - name: "Aurora Probability"
+        unique_id: aurora_probability_home_zone
+        state: >
+          {% set coords = state_attr('sensor.noaa_aurora_raw', 'coordinates') %}
+          {% set lat = state_attr('zone.home', 'latitude') | float(0) %}
+          {% set lon = state_attr('zone.home', 'longitude') | float(0) %}
+
+          {% if coords is not iterable or coords|length == 0 %}
+            unavailable
+          {% else %}
+            {% set ns = namespace(min=9e99, best=None) %}
+            {% set step = (coords|length // 500) if coords|length > 500 else 1 %}
+            {% for i in range(0, coords|length, step) %}
+              {% set c = coords[i] %}
+              {% if c is iterable and c|length >= 3 %}
+                {% set dist = ((c[1] - lat)**2 + (c[0] - lon)**2) %}
+                {% if dist < ns.min %}
+                  {% set ns.min = dist %}
+                  {% set ns.best = c[2] %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+            {{ (ns.best * 100)|round(1) if ns.best is not none else 'unavailable' }}
+          {% endif %}
+        unit_of_measurement: "%"
+        state_class: measurement
+        attributes:
+          source: "NOAA OVATION"
+          home_lat: "{{ state_attr('zone.home','latitude') }}"
+          home_lon: "{{ state_attr('zone.home','longitude') }}"
+
+  # -----------------------
+  # Regular Template Sensors
+  # -----------------------
+  - sensor:
+      - name: "Raspberry Pi Estimated Power"
+        unique_id: raspberry_pi_estimated_power
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        state: >
+          {% set cpu = [states('sensor.system_monitor_processor_use') | float(0), 100] | min %}
+          {% set freq = states('sensor.cpu_frequency') | float(1500) %}
+
+          {% set P_idle = 4 %}
+          {% set P_max = 10 %}
+
+          {# CPU load factor #}
+          {% set cpu_factor = cpu / 100 %}
+
+          {# Frequency factor (600–2500 MHz typical Pi5 range) #}
+          {% set freq_factor = (freq - 600) / (2500 - 600) %}
+          {% set freq_factor = freq_factor if freq_factor > 0 else 0 %}
+          {% set freq_factor = freq_factor if freq_factor < 1 else 1 %}
+
+          {# Combined load #}
+          {% set load = cpu_factor * 0.7 + freq_factor * 0.3 %}
+
+          {{ (P_idle + (P_max - P_idle) * load) | round(2) }}
+
+      - name: "Current Full Address"
+        state: >
+          {% set raw = states('sensor.home_location_nominatim') %}
+          {% set addr = state_attr('sensor.home_location_nominatim','address') %}
+          {% if addr is mapping %}
+            {{ raw }}
+          {% else %}
+            unknown
+          {% endif %}
+        icon: mdi:home-map-marker
+
+      - name: "Current City"
+        state: >
+          {% set addr = state_attr('sensor.home_location_nominatim','address') %}
+          {% if addr is mapping %}
+            {{ addr.city|default(addr.town)|default(addr.village)|default('unknown') }}
+          {% else %}
+            unknown
+          {% endif %}
+        icon: mdi:city
+
+      - name: "Current County"
+        state: >
+          {% set addr = state_attr('sensor.home_location_nominatim','address') %}
+          {% if addr is mapping %}
+            {{ addr.county|default(addr.state_district)|default('unknown') }}
+          {% else %}
+            unknown
+          {% endif %}
+        icon: mdi:map
+
+      - name: "Current State"
+        state: >
+          {% set addr = state_attr('sensor.home_location_nominatim','address') %}
+          {% if addr is mapping %}
+            {{ addr.state|default('unknown') }}
+          {% else %}
+            unknown
+          {% endif %}
+        icon: mdi:map-marker-radius
+
+      - name: "Current Street"
+        state: >
+          {% set addr = state_attr('sensor.home_location_nominatim','address') %}
+          {% if addr is mapping %}
+            {{ addr.road|default(addr.pedestrian)|default('unknown') }}
+          {% else %}
+            unknown
+          {% endif %}
+        icon: mdi:road
+
+      - name: "Current Latitude"
+        state: "{{ state_attr('zone.home','latitude') }}"
+        icon: mdi:map
+
+      - name: "Current Longitude"
+        state: "{{ state_attr('zone.home','longitude') }}"
+        icon: mdi:map
+
+      - name: "Current Elevation"
+        unit_of_measurement: "m"
+        state: >
+          {% set ele = state_attr('zone.home', 'elevation') %}
+          {% if ele is number %}
+            {{ ele }}
+          {% elif ele is string %}
+            {{ ele|float(0) }}
+          {% else %}
+            {{ none }}
+          {% endif %}
+        icon: mdi:map
+
+
+  # Van Command dashboard derived status sensors.
+  - sensor:
+      - name: "Van Power Mode"
+        unique_id: van_power_mode
+        icon: mdi:transmission-tower
+        state: >
+          {% set shore = states('sensor.shore_power_30a_output_power_1') | float(0) %}
+          {% set solar = states('sensor.mppt_70_power') | float(0) %}
+          {% set battery = states('sensor.battery_shunt_power') | float(0) %}
+          {% if is_state('binary_sensor.any_battery_problem', 'on') %}
+            Battery Alert
+          {% elif shore > 25 %}
+            Shore Power
+          {% elif is_state('binary_sensor.battery_shunt_charging', 'on') %}
+            Charging
+          {% elif solar > 25 %}
+            Solar Assist
+          {% elif battery < -25 %}
+            Battery
+          {% else %}
+            Idle
+          {% endif %}
+      - name: "Van Net Power Balance"
+        unique_id: van_net_power_balance
+        icon: mdi:scale-balance
+        device_class: power
+        state_class: measurement
+        unit_of_measurement: W
+        state: >
+          {{ (
+            states('sensor.mppt_70_power') | float(0)
+            + states('sensor.shore_power_30a_output_power_1') | float(0)
+            + states('sensor.dc_dc_xs_output_power') | float(0)
+            - states('sensor.power_consumption') | float(0)
+          ) | round(1) }}
+      - name:  Van Equipment Health
+        unique_id: van_equipment_health
+        icon: mdi:heart-pulse
+        state: >
+          {% set shunt = states('sensor.battery_shunt_alarm_reason') %}
+          {% set mppt = states('sensor.mppt_solar_charger_error') %}
+          {% set shore = states('sensor.shore_power_30a_charger_error') %}
+          {% if is_state('binary_sensor.any_battery_problem', 'on')
+                or is_state('binary_sensor.rpi_power_status', 'on')
+                or is_state('binary_sensor.starlink_thermal_throttle', 'on')
+                or shunt not in ['no_alarm', 'unknown', 'unavailable', '']
+                or mppt not in ['no_error', 'unknown', 'unavailable', '']
+                or shore not in ['no_error', 'unknown', 'unavailable', ''] %}
+            Attention
+          {% else %}
+            Normal
+          {% endif %}
+      - name: "Van Location Summary"
+        unique_id: van_location_summary
+        icon: mdi:map-marker
+        state: >
+          {% set street = states('sensor.current_street') %}
+          {% set city = states('sensor.current_city') %}
+          {% set region = states('sensor.current_state') %}
+          {{ [street, city, region] | reject('in', ['unknown', 'unavailable', '']) | join(', ') }}
+  - binary_sensor:
+      - name: "Van Internet Healthy"
+        unique_id: van_internet_healthy
+        device_class: connectivity
+        icon: mdi:satellite-uplink
+        state: >
+          {{ is_state('binary_sensor.starlink_connectivity', 'on')
+             and not is_state('binary_sensor.starlink_obstructed', 'on')
+             and not is_state('binary_sensor.starlink_thermal_throttle', 'on')
+             and states('sensor.starlink_ping') | float(9999) < 200
+             and states('sensor.starlink_ping_drop_rate') | float(100) < 20 }}
+      - name: "Van Climate Alert"
+        unique_id: van_climate_alert
+        device_class: problem
+        icon: mdi:thermometer-alert
+        state: >
+          {% set temps = [
+            states('sensor.meter_1c97_temperature') | float(70),
+            states('sensor.meter_3732_temperature') | float(70),
+            states('sensor.sink_temperature') | float(70),
+            states('sensor.meter_b62a_temperature') | float(70)
+          ] %}
+          {% set humidity = [
+            states('sensor.meter_1c97_humidity') | float(40),
+            states('sensor.meter_3732_humidity') | float(40),
+            states('sensor.sink_humidity') | float(40),
+            states('sensor.meter_b62a_humidity') | float(40)
+          ] %}
+          {{ temps | max > 120 or temps | min < 35 or humidity | max > 80 }}
+      - name: "Van Power Alert"
+        unique_id: van_power_alert
+        device_class: problem
+        icon: mdi:battery-alert
+        state: >
+          {{ is_state('binary_sensor.any_battery_problem', 'on')
+             or states('sensor.battery_shunt_battery') | float(100) < 15
+             or states('sensor.battery_shunt_voltage') | float(14) < 11.8
+             or states('sensor.battery_shunt_alarm_reason') not in ['no_alarm', 'unknown', 'unavailable'] }}
+
+# ===============================
+# Curated low-bandwidth Black Box feed
+# ===============================

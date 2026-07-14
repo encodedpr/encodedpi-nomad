@@ -1,0 +1,10 @@
+# Merge this `http` configuration into the primary Home Assistant instance.
+# The public Nginx server reaches this instance through the reverse SSH tunnel,
+# whose Home Assistant-side peer is loopback. Do not add broad LAN subnets here.
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - ::1
+  ip_ban_enabled: true
+  login_attempts_threshold: 5

@@ -1,0 +1,18 @@
+- id: van_dynamic_timezone
+  alias: Van Dynamic Time Zone
+  description: Keep EncodedPi and Home Assistant in the GPS location time zone.
+  triggers:
+    - trigger: homeassistant
+      event: start
+    - trigger: state
+      entity_id: sensor.van_time_zone
+  conditions:
+    - condition: template
+      value_template: >-
+        {% set zone = states('sensor.van_time_zone') %}
+        {{ zone not in ['unknown', 'unavailable', 'none', ''] and '/' in zone }}
+  actions:
+    - action: shell_command.update_van_timezone
+      data:
+        zone: "{{ states('sensor.van_time_zone') }}"
+  mode: single

@@ -1,0 +1,2085 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "type": "sections",
+          "path": "",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "light",
+                  "entity": "light.smart_wi_fi_rgbw",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 4
+                  },
+                  "name": "Indoor Light"
+                },
+                {
+                  "type": "light",
+                  "entity": "light.smart_wi_fi_dimmer",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 4
+                  }
+                },
+                {
+                  "type": "light",
+                  "entity": "light.front",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 4
+                  }
+                },
+                {
+                  "type": "button",
+                  "entity": "switch.security_feed_display",
+                  "name": "Security Display",
+                  "icon": "mdi:cctv",
+                  "show_name": true,
+                  "show_icon": true,
+                  "show_state": true,
+                  "state_color": true,
+                  "color": "green",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  }
+                },
+                {
+                  "type": "button",
+                  "entity": "button.restart_security_feed",
+                  "name": "Restart Feed",
+                  "icon": "mdi:restart-alert",
+                  "show_name": true,
+                  "show_icon": true,
+                  "show_state": false,
+                  "color": "orange",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "button.press",
+                    "target": {
+                      "entity_id": "button.restart_security_feed"
+                    }
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 3
+                  }
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "button.gl_inet_x3000_reboot",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "show_state": false,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "name": "Restart Router"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "button.starlink_restart",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "show_state": false,
+                  "name": "Restart Starlink"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "switch.gl_inet_x3000_puerto_rico_the_best",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "show_state": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "button.reboot_pi",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "show_state": false,
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "entity": "automation.starlink_unavailable",
+                  "show_state": false,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "color": "none"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "switch.gl_inet_x3000_wg_client_pia_newyork432",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "show_state": true,
+                  "name": "VPN",
+                  "icon": "mdi:network-outline"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "switch.cooking_outlet"
+                    },
+                    {
+                      "entity": "switch.right_light_socket_1",
+                      "name": "Display"
+                    },
+                    {
+                      "entity": "switch.fan_socket_1"
+                    },
+                    {
+                      "entity": "switch.pc_1_socket_1"
+                    },
+                    {
+                      "entity": "switch.solar_socket_1",
+                      "name": "Electric Blanket"
+                    },
+                    {
+                      "entity": "switch.entertainment_socket_1",
+                      "name": "Bat Heaters"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.gl_inet_x3000_cpu_temperature",
+                      "name": "Router CPU Temperature",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.gl_inet_x3000_load_avg_1m",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.gl_inet_x3000_memory_usage",
+                      "name": "Router Memory Used",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.gl_inet_x3000_flash_usage",
+                      "name": "Router Disk Used",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.system_monitor_processor_temperature",
+                      "name": "RPi CPU Temperature",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.system_monitor_processor_use",
+                      "name": "RPi CPU",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.system_monitor_memory_usage",
+                      "name": "RPi Memory Used",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.system_monitor_disk_free",
+                      "name": "RPi Disk Free /",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.system_monitor_last_boot",
+                      "name": "RPi Last Boot",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "binary_sensor.starlink_obstructed",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.starlink_ping_drop_rate",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.starlink_ping",
+                      "secondary_info": "last-updated"
+                    }
+                  ],
+                  "state_color": true
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "show_state": true,
+                  "type": "glance",
+                  "entities": [
+                    {
+                      "entity": "sensor.sun_next_dawn"
+                    },
+                    {
+                      "entity": "sensor.sun_next_setting"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_time_remaining"
+                    },
+                    {
+                      "entity": "sensor.ip_info",
+                      "name": "ISP Name",
+                      "icon": "mdi:ip",
+                      "show_last_changed": false
+                    }
+                  ],
+                  "state_color": true
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.battery_shunt_battery",
+                  "needle": true,
+                  "severity": {
+                    "green": 30,
+                    "yellow": 20,
+                    "red": 0
+                  },
+                  "max": 100,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "gauge",
+                  "needle": true,
+                  "max": 1000,
+                  "entity": "sensor.battery_shunt_power",
+                  "min": -1000,
+                  "severity": {
+                    "green": 1,
+                    "yellow": 0,
+                    "red": -1000
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "distribution",
+                  "entities": [
+                    {
+                      "entity": "sensor.battery_shunt_power_inverted",
+                      "name": "Shunt Power"
+                    },
+                    {
+                      "entity": "sensor.mppt_70_power",
+                      "name": "Solar Power"
+                    },
+                    {
+                      "entity": "sensor.shore_power_30a_output_power_1"
+                    },
+                    {
+                      "entity": "sensor.dc_dc_xs_output_power"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:solar-card",
+                  "production_entity": "sensor.mppt_70_power",
+                  "image_url": "",
+                  "grid_feed_entity": "",
+                  "show_energy_flow": false,
+                  "show_top_devices": false,
+                  "top_devices_max": 3,
+                  "device_badge_intensity": true,
+                  "excluded_device_ids": [],
+                  "show_solar_forecast": true,
+                  "weather_entity": "weather.home",
+                  "solar_forecast_today_entity": "sensor.energy_production_today",
+                  "show_today_metrics": true,
+                  "show_trend_graphs": false,
+                  "trend_graph_hours_to_show": 24,
+                  "trend_graph_entities": [],
+                  "total_yield_entity": "sensor.mppt_70_solar_energy_today",
+                  "total_grid_consumption_entity": "sensor.grid_energy_today",
+                  "current_consumption_entity": "sensor.power_consumption",
+                  "totals_metrics": [
+                    {
+                      "id": "metric-1767718329195-0",
+                      "entity": "sensor.grid_power"
+                    },
+                    {
+                      "id": "metric-1767770932882-1",
+                      "entity": "sensor.battery_shunt_time_remaining"
+                    }
+                  ]
+                },
+                {
+                  "type": "energy-sankey",
+                  "layout": "auto",
+                  "group_by_floor": false,
+                  "group_by_area": false
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.battery_shunt_consumed_energy",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.power_consumption"
+                    },
+                    {
+                      "entity": "sensor.input_power"
+                    },
+                    {
+                      "entity": "sensor.calculated_battery_time",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_remaining_energy",
+                      "name": {
+                        "type": "entity"
+                      },
+                      "secondary_info": "last-updated"
+                    }
+                  ],
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "show_state": true,
+                  "type": "glance",
+                  "entities": [
+                    {
+                      "entity": "number.vevor_diesel_heater_current_fuel_level",
+                      "name": "Heater Fuel"
+                    },
+                    {
+                      "entity": "sensor.meter_1c97_temperature"
+                    },
+                    {
+                      "entity": "sensor.outdoor_temperature"
+                    },
+                    {
+                      "entity": "sensor.average_bat_temperature"
+                    }
+                  ],
+                  "state_color": true
+                },
+                {
+                  "type": "thermostat",
+                  "entity": "climate.vevor_heater",
+                  "show_current_as_primary": false,
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 4
+                  },
+                  "features": [
+                    {
+                      "style": "dropdown",
+                      "type": "climate-hvac-modes",
+                      "hvac_modes": [
+                        "heat",
+                        "off"
+                      ]
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "climate.vevor_heater",
+                      "state_not": "unavailable"
+                    }
+                  ]
+                },
+                {
+                  "type": "entity",
+                  "entity": "sensor.vevor_diesel_heater_error",
+                  "state_color": true,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.vevor_diesel_heater_problem",
+                      "state": "on"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "switch.vevor_diesel_heater_power",
+                      "state": "off"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 2
+                  },
+                  "name": "Heater Error"
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "select.vevor_heater_running_mode",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "show_state": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "name": "Heater Mode",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.vevor_diesel_heater_problem",
+                      "state": "off"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "switch.vevor_diesel_heater_power",
+                      "state": "on"
+                    }
+                  ]
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "sensor.vevor_diesel_heater_set_level",
+                  "show_state": true,
+                  "name": "Heater Level",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.vevor_diesel_heater_power",
+                      "state": "on"
+                    }
+                  ]
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "type": "button",
+                  "entity": "fan.vevor_heater_heater_level",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "show_state": true,
+                  "name": {
+                    "type": "entity"
+                  },
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "select.vevor_heater_running_mode",
+                      "state": "Level"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.vevor_diesel_heater_problem",
+                      "state": "off"
+                    }
+                  ]
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sun.sun"
+                    },
+                    {
+                      "entity": "weather.home"
+                    },
+                    {
+                      "entity": "sensor.shore_power_30a_output_power_1"
+                    },
+                    {
+                      "entity": "sensor.mppt_70_power",
+                      "name": "MPPT Solar"
+                    },
+                    {
+                      "entity": "sensor.power_consumption"
+                    },
+                    {
+                      "entity": "sensor.dc_dc_xs_output_power",
+                      "name": "DC-DC Power"
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "logarithmic_scale": false
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.gps_127_0_0_1_speed",
+                      "name": "Speed",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.gps_127_0_0_1_elevation",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.sm_g991u1_current_time_zone",
+                      "name": "Time Zone",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.current_street",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.current_city",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.current_county",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.current_state",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.current_latitude",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.current_longitude",
+                      "secondary_info": "last-updated"
+                    }
+                  ]
+                },
+                {
+                  "type": "map",
+                  "entities": [
+                    {
+                      "entity": "zone.home"
+                    },
+                    {
+                      "entity": "device_tracker.sm_g991u1"
+                    }
+                  ],
+                  "hours_to_show": 1200,
+                  "default_zoom": 7,
+                  "auto_fit": false,
+                  "fit_zones": false,
+                  "cluster": false,
+                  "theme_mode": "auto"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "show_state": true,
+                  "type": "glance",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.mjpeg_motion",
+                      "show_last_changed": false,
+                      "name": "Motion Detection"
+                    },
+                    {
+                      "entity": "sensor.sm_g991u1_battery_level",
+                      "name": "Phone Battery"
+                    },
+                    {
+                      "entity": "sensor.sm_g991u1_daily_steps",
+                      "name": "Daily Steps"
+                    },
+                    {
+                      "entity": "sensor.sm_g991u1_geocoded_location",
+                      "name": "Phone Location"
+                    }
+                  ],
+                  "state_color": true
+                },
+                {
+                  "show_current": true,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.home",
+                  "forecast_type": "hourly",
+                  "secondary_info_attribute": "wind_speed",
+                  "forecast_slots": 6
+                },
+                {
+                  "camera_view": "auto",
+                  "alert_classes": [
+                    "battery_charging",
+                    "connectivity"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "display_type": "camera",
+                  "features_position": "bottom",
+                  "type": "area",
+                  "area": "van",
+                  "color": "",
+                  "vertical": false,
+                  "navigation_path": "",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 8
+                  }
+                },
+                {
+                  "type": "custom:weather-radar-card",
+                  "data_source": "RainViewer-Rainbow",
+                  "zoom_level": 7,
+                  "show_marker": true,
+                  "show_range": false,
+                  "show_scale": true,
+                  "static_map": false,
+                  "show_playback": true,
+                  "extra_labels": true,
+                  "show_recenter": true,
+                  "show_zoom": false,
+                  "square_map": false,
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 7
+                  },
+                  "map_style": "Dark"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.aurora_probability",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "sensor.x_class_1_day_probability",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.planetary_k_index",
+                      "secondary_info": "last-updated"
+                    }
+                  ]
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.meter_1c97_temperature"
+                    },
+                    {
+                      "entity": "sensor.meter_3732_temperature"
+                    },
+                    {
+                      "entity": "sensor.meter_b62a_temperature"
+                    },
+                    {
+                      "entity": "sensor.outdoor_temperature"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_temperature"
+                    },
+                    {
+                      "entity": "sensor.sink_temperature"
+                    },
+                    {
+                      "entity": "sensor.meter_1c97_humidity"
+                    },
+                    {
+                      "entity": "sensor.meter_3732_humidity"
+                    },
+                    {
+                      "entity": "sensor.meter_b62a_humidity"
+                    },
+                    {
+                      "entity": "sensor.outdoor_humidity"
+                    },
+                    {
+                      "entity": "sensor.sink_humidity"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "input_boolean.drive_mode"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.battery_shunt_charging",
+              "name": "Bank Charging"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.any_battery_problem"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.rpi_power_status"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.starlink_thermal_throttle",
+              "name": [
+                {
+                  "type": "device"
+                },
+                {
+                  "type": "entity"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.battery_shunt_alarm_reason",
+              "name": "Shunt Alarm"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.dc_dc_xs_operation_mode",
+              "name": "DC-DC Mode"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.dc_dc_xs_off_reason"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.mppt_70_operation_mode",
+              "name": "MPPT Mode"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.mppt_70_charger_error",
+              "show_entity_picture": false,
+              "name": "MPPT Error"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.shore_power_30a_operation_mode",
+              "name": "Shore power mode"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.shore_power_30a_charger_error",
+              "name": "shore charger error"
+            }
+          ],
+          "max_columns": 4,
+          "title": "Home"
+        },
+        {
+          "type": "sections",
+          "cards": [],
+          "title": "Energy Stats",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.battery_shunt_charging",
+              "name": "Battery Bank"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.any_battery_problem"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.rpi_power_status",
+              "show_entity_picture": false,
+              "icon": "mdi:raspberry-pi",
+              "state_content": "state"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.battery_shunt_alarm_reason",
+              "name": "Shunt Alarm",
+              "show_entity_picture": true
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.shore_power_30a_charger_error",
+              "name": "Shore Alarm"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.mppt_solar_charger_error",
+              "name": "MPPT Alarm"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.dc_dc_xs_off_reason",
+              "color": "primary"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.mppt_solar_operation_mode",
+              "name": "MPPT Mode"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.dc_dc_xs_operation_mode",
+              "name": "DC-DC Mode"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.shore_power_30a_operation_mode",
+              "name": "Shore Power Mode",
+              "state_content": "state"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.stored_energy_total"
+            }
+          ],
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "show_state": true,
+                  "type": "glance",
+                  "entities": [
+                    {
+                      "entity": "sensor.battery_shunt_battery"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_temperature"
+                    },
+                    {
+                      "entity": "sensor.input_power"
+                    },
+                    {
+                      "entity": "sensor.power_consumption"
+                    }
+                  ],
+                  "state_color": true,
+                  "columns": 4
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "show_state": true,
+                  "type": "glance",
+                  "entities": [
+                    {
+                      "entity": "sensor.battery_shunt_voltage"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_time_remaining"
+                    },
+                    {
+                      "entity": "sensor.renogy_inverter_renogy_load_active_power"
+                    }
+                  ],
+                  "state_color": true,
+                  "columns": 3,
+                  "grid_options": {
+                    "rows": "auto",
+                    "columns": 9
+                  }
+                },
+                {
+                  "type": "energy-self-sufficiency-gauge",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.battery_shunt_voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_current",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.dc_dc_xs_input_voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.dc_dc_xs_input_current",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.dc_dc_xs_output_voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.dc_dc_xs_output_current",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.shore_power_30a_output_voltage_1",
+                      "name": "Shore Charging Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.shore_power_30a_output_current_1",
+                      "name": "Shore Charging Current",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.mppt_solar_voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.mppt_solar_current",
+                      "secondary_info": "last-updated"
+                    }
+                  ],
+                  "state_color": true,
+                  "title": "Volts and Amps"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "distribution",
+                  "entities": [
+                    {
+                      "entity": "sensor.shunt_discharging_power"
+                    },
+                    {
+                      "entity": "sensor.mppt_70_power",
+                      "name": "Solar Power"
+                    },
+                    {
+                      "entity": "sensor.shore_power_30a_output_power_1"
+                    },
+                    {
+                      "entity": "sensor.dc_dc_xs_output_power"
+                    }
+                  ],
+                  "title": "Producers"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.shunt_charging_power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.fridge_power",
+                      "secondary_info": "last-updated",
+                      "name": "Fridge Estimated Power"
+                    },
+                    {
+                      "entity": "sensor.starlink_power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.rgbw_light_power",
+                      "secondary_info": "last-updated",
+                      "name": "RGBW Calculated Power"
+                    },
+                    {
+                      "entity": "sensor.network_power",
+                      "secondary_info": "last-updated",
+                      "name": "Router Calculated Power"
+                    },
+                    {
+                      "entity": "sensor.power",
+                      "name": "DVR Estimated Power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.raspberry_pi_estimated_power",
+                      "secondary_info": "last-updated",
+                      "icon": "mdi:flash"
+                    },
+                    {
+                      "entity": "sensor.power_2",
+                      "name": "Porch Light Calculated Power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.right_light_power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.ac_left_3_power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.entertainment_power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.cooking_outlet_power",
+                      "secondary_info": "last-updated",
+                      "name": "Kitchen Outlet Power"
+                    },
+                    {
+                      "entity": "sensor.fan_power",
+                      "name": "Laptop Charger Power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.pc_1_power",
+                      "secondary_info": "last-updated"
+                    }
+                  ],
+                  "title": "Consumers",
+                  "state_color": true,
+                  "show_header_toggle": false
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:solar-card",
+                  "production_entity": "sensor.mppt_70_power",
+                  "current_consumption_entity": "sensor.power_consumption",
+                  "image_url": "",
+                  "grid_feed_entity": "",
+                  "grid_feed_charging_entity": "",
+                  "show_energy_flow": false,
+                  "show_top_devices": false,
+                  "top_devices_max": 4,
+                  "device_badge_intensity": true,
+                  "excluded_device_ids": [],
+                  "show_solar_forecast": true,
+                  "weather_entity": "weather.home",
+                  "solar_forecast_today_entity": "sensor.energy_production_today",
+                  "show_today_metrics": true,
+                  "show_trend_graphs": false,
+                  "trend_graph_hours_to_show": 24,
+                  "trend_graph_entities": [],
+                  "totals_metrics": [],
+                  "total_grid_consumption_entity": "sensor.grid_energy",
+                  "total_yield_entity": "sensor.mppt_70_solar_energy_today"
+                },
+                {
+                  "type": "energy-distribution",
+                  "link_dashboard": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_boolean.fridge_on",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "input_boolean.dvr_device",
+                      "secondary_info": "last-changed"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sun.sun"
+                    },
+                    {
+                      "entity": "weather.home"
+                    },
+                    {
+                      "entity": "sensor.dc_dc_xs_output_power",
+                      "name": "DC-DC Output Power"
+                    },
+                    {
+                      "entity": "sensor.mppt_70_power"
+                    },
+                    {
+                      "entity": "sensor.shore_power_30a_output_power_1"
+                    },
+                    {
+                      "entity": "sensor.power_consumption"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_battery"
+                    },
+                    {
+                      "entity": "sensor.shunt_charging_power"
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "logarithmic_scale": false
+                },
+                {
+                  "type": "energy-sankey",
+                  "layout": "auto",
+                  "group_by_floor": false,
+                  "group_by_area": false
+                },
+                {
+                  "type": "energy-carbon-consumed-gauge"
+                }
+              ]
+            }
+          ],
+          "max_columns": 4,
+          "dense_section_placement": true,
+          "background": {
+            "opacity": 33,
+            "alignment": "center",
+            "size": "auto",
+            "repeat": "repeat",
+            "attachment": "fixed"
+          }
+        },
+        {
+          "type": "sections",
+          "title": "Battery Detail",
+          "subview": false,
+          "cards": [],
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Battery A (100AH)",
+                  "heading_style": "title",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.r_12100ben100_a00820_battery",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.bat_a_battery_health",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "binary_sensor.r_12100ben100_a00820_problem",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ],
+                  "icon": "mdi:battery-bluetooth"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.r_12100ben100_a00820_charging"
+                    },
+                    {
+                      "entity": "binary_sensor.bat_a_heat"
+                    },
+                    {
+                      "entity": "binary_sensor.bat_a_balancer"
+                    }
+                  ],
+                  "logarithmic_scale": false
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_voltage",
+                      "secondary_info": "last-updated",
+                      "name": "Voltage"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_current",
+                      "secondary_info": "last-updated",
+                      "name": " Current"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_power",
+                      "name": "Power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_a_minimal_cell_voltage",
+                      "name": "Minimal Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_a_maximal_cell_voltage",
+                      "name": "Maximal Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_delta_voltage",
+                      "name": "Delta Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_stored_energy",
+                      "name": "Stored Energy",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_cycles",
+                      "secondary_info": "last-updated",
+                      "name": "Cycles"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_runtime",
+                      "name": "Rundown time",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_a_temperature",
+                      "secondary_info": "last-updated",
+                      "name": "Temperature"
+                    }
+                  ],
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Battery B (100AH)",
+                  "heading_style": "title",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.r_12100ben100_a00876_battery",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.bat_b_battery_health",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "binary_sensor.r_12100ben100_a00876_problem",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ],
+                  "icon": "mdi:battery-bluetooth"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.r_12100ben100_a00876_charging"
+                    },
+                    {
+                      "entity": "binary_sensor.bat_b_heat"
+                    },
+                    {
+                      "entity": "binary_sensor.bat_b_balancer"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_voltage",
+                      "secondary_info": "last-updated",
+                      "name": "Voltage "
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_current",
+                      "secondary_info": "last-changed",
+                      "name": "Current"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_power",
+                      "name": "Power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_b_minimal_cell_voltage",
+                      "name": "Minimal Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_b_maximal_cell_voltage",
+                      "name": "Maximal Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_delta_voltage",
+                      "name": "Delta Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_stored_energy",
+                      "name": "Stored Energy",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_cycles",
+                      "name": "Cycles",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_runtime",
+                      "name": "Rundown time",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_b_temperature",
+                      "secondary_info": "last-updated",
+                      "name": "Temperature"
+                    }
+                  ],
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Battery C (100AH)",
+                  "icon": "mdi:battery-bluetooth",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.r_12100ben100_a00868_battery",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.bat_c_battery_health",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "binary_sensor.r_12100ben100_a00868_problem",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.r_12100ben100_a00868_charging"
+                    },
+                    {
+                      "entity": "binary_sensor.bat_c_heat"
+                    },
+                    {
+                      "entity": "binary_sensor.bat_c_balancer"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_voltage",
+                      "secondary_info": "last-updated",
+                      "name": "Voltage"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_current",
+                      "name": "Current",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_power",
+                      "name": "Power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_c_minimal_cell_voltage",
+                      "name": "Minimal Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_c_maximal_cell_voltage",
+                      "name": "Maximal Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_delta_voltage",
+                      "name": "Delta Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_stored_energy",
+                      "name": "Stored Energy",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_cycles",
+                      "name": "Cycles",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_runtime",
+                      "secondary_info": "last-updated",
+                      "name": "Rundown time"
+                    },
+                    {
+                      "entity": "sensor.bat_c_temperature",
+                      "secondary_info": "last-updated",
+                      "name": "Temperature"
+                    }
+                  ],
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Battery D (165AH)",
+                  "heading_style": "title",
+                  "icon": "mdi:battery-bluetooth",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.d_battery",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.bat_d_battery_health",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "binary_sensor.d_problem",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.d_charging"
+                    },
+                    {
+                      "entity": "binary_sensor.bat_d_heat"
+                    },
+                    {
+                      "entity": "binary_sensor.bat_d_balancer"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.d_voltage",
+                      "secondary_info": "last-updated",
+                      "name": "Voltage"
+                    },
+                    {
+                      "entity": "sensor.d_current",
+                      "name": "Current",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.d_power",
+                      "name": "Power",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_d_minimal_cell_voltage",
+                      "name": "Minimal Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.bat_d_maximal_cell_voltage",
+                      "name": "Maximal Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.d_delta_voltage",
+                      "name": "Delta Cell Voltage",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.d_stored_energy",
+                      "secondary_info": "last-updated",
+                      "name": "Stored Energy"
+                    },
+                    {
+                      "entity": "sensor.d_cycles",
+                      "name": "Cycles",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.d_runtime",
+                      "secondary_info": "last-updated",
+                      "name": "Rundown time"
+                    },
+                    {
+                      "entity": "sensor.bat_d_temperature",
+                      "name": "Temperature",
+                      "secondary_info": "last-updated"
+                    }
+                  ],
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Battery E(165AH)",
+                  "heading_style": "title",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.r_12165bnn100_b02670_battery",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "color": "state"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.r_12165bnn100_b02670_battery_health",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "binary_sensor.r_12165bnn100_b02670_problem",
+                      "color": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ],
+                  "icon": "mdi:battery-bluetooth"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.r_12165bnn100_b02670_charging"
+                    },
+                    {
+                      "entity": "binary_sensor.r_12165bnn100_b02670_heater"
+                    },
+                    {
+                      "entity": "binary_sensor.r_12165bnn100_b02670_balancer"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_voltage",
+                      "secondary_info": "last-updated",
+                      "name": "Voltage"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_current",
+                      "secondary_info": "last-changed",
+                      "name": "Current"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_power",
+                      "secondary_info": "last-changed",
+                      "name": "Power"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_lowest_cell_voltage",
+                      "secondary_info": "last-changed",
+                      "name": "Minimal Cell Voltage"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_highest_cell_voltage",
+                      "name": "Maximal Cell Voltage",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_delta_cell_voltage",
+                      "secondary_info": "last-changed",
+                      "name": "Delta Cell Voltage"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_stored_energy",
+                      "secondary_info": "last-changed",
+                      "name": "Stored Energy"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_cycles",
+                      "name": "Cycles",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_runtime",
+                      "name": "Rundown time",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_temperature",
+                      "name": "Temperature",
+                      "secondary_info": "last-updated"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Over Time",
+                  "icon": "mdi:chart-box-multiple"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_battery"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_battery"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_battery"
+                    },
+                    {
+                      "entity": "sensor.d_battery"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_battery"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_battery"
+                    },
+                    {
+                      "entity": "sensor.average_soc"
+                    }
+                  ],
+                  "title": "SoC"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_voltage"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_voltage"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_voltage"
+                    },
+                    {
+                      "entity": "sensor.d_voltage"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_voltage"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_voltage"
+                    }
+                  ],
+                  "title": "Voltage"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_power"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_power"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_power"
+                    },
+                    {
+                      "entity": "sensor.d_power"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_power"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_power"
+                    }
+                  ],
+                  "title": "Power"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.r_12100ben100_a00820_stored_energy"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00876_stored_energy"
+                    },
+                    {
+                      "entity": "sensor.r_12100ben100_a00868_stored_energy"
+                    },
+                    {
+                      "entity": "sensor.d_stored_energy"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_stored_energy"
+                    }
+                  ],
+                  "title": "Stored Energy"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.bat_a_temperature"
+                    },
+                    {
+                      "entity": "sensor.bat_b_temperature"
+                    },
+                    {
+                      "entity": "sensor.bat_c_temperature"
+                    },
+                    {
+                      "entity": "sensor.bat_d_temperature"
+                    },
+                    {
+                      "entity": "sensor.r_12165bnn100_b02670_temperature"
+                    },
+                    {
+                      "entity": "sensor.battery_compartment_temperature"
+                    },
+                    {
+                      "entity": "sensor.battery_shunt_temperature"
+                    }
+                  ],
+                  "title": "Temperature"
+                }
+              ],
+              "column_span": 5
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.any_battery_problem"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.battery_shunt_battery"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.battery_shunt_voltage"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.battery_shunt_current"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.battery_shunt_temperature"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.input_power"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.power_consumption"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.battery_shunt_power"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.battery_shunt_time_remaining"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.shunt_charging_energy_today",
+              "name": {
+                "type": "entity"
+              }
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.shunt_discharged_today"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.battery_power_sensed"
+            }
+          ],
+          "max_columns": 5,
+          "dense_section_placement": true,
+          "icon": ""
+        }
+      ]
+    }
+  }
+}

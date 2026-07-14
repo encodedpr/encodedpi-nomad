@@ -1,0 +1,10 @@
+recorder:
+  purge_keep_days: 10
+  exclude:
+    entities:
+      - sensor.noaa_aurora_raw
+      - sensor.planetary_k_forecast_raw
+      - sensor.home_location_nominatim
+    entity_globs:
+      - sensor.skynet_mirror_*
+      - sensor.blackbox_*
