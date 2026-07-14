@@ -1,0 +1,314 @@
+title: Van Command
+views:
+- title: Overview
+  path: overview
+  icon: mdi:van-utility
+  type: panel
+  cards:
+  - type: grid
+    columns: 2
+    square: false
+    cards:
+    - type: vertical-stack
+      cards:
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+        - type: gauge
+          entity: sensor.battery_shunt_battery
+          name: Battery SoC
+          needle: true
+          min: 0
+          max: 100
+          severity:
+            red: 0
+            yellow: 20
+            green: 50
+        - type: glance
+          show_name: true
+          show_icon: true
+          show_state: true
+          state_color: true
+          columns: 4
+          entities:
+          - entity: sensor.van_internet_isp
+            name: Internet
+          - entity: sensor.battery_shunt_remaining_energy
+            name: Remaining Power
+          - entity: sensor.battery_shunt_time_remaining
+            name: Runtime
+          - entity: sensor.power_consumption
+            name: Van Load
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Needs Attention
+          show_header_toggle: false
+        filter:
+          include:
+          - entity_id: binary_sensor.any_battery_problem
+            state: 'on'
+          - entity_id: sensor.battery_shunt_battery
+            state: unavailable
+          - entity_id: sensor.mppt_70_power
+            state: unavailable
+          - entity_id: camera.mjpeg_camera
+            state: unavailable
+        sort:
+          method: name
+        show_empty: false
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+        - type: gauge
+          entity: sensor.battery_shunt_power
+          name: Shunt Power
+          needle: true
+          min: -1000
+          max: 1000
+          severity:
+            green: 1
+            yellow: 0
+            red: -1000
+          card_mod:
+            style: |
+              ha-card {
+                height: 170px !important;
+              }
+        - type: distribution
+          entities:
+          - entity: sensor.battery_shunt_power_inverted
+            name: Shunt Power
+          - entity: sensor.mppt_70_power
+            name: Solar Power
+          - entity: sensor.shore_power_30a_output_power_1
+          - entity: sensor.dc_dc_xs_output_power
+          card_mod:
+            style: |
+              ha-card {
+                height: 170px !important;
+              }
+      - type: weather-forecast
+        entity: weather.home
+        name: Current Weather
+        show_current: true
+        show_forecast: true
+        forecast_type: hourly
+        forecast_slots: 8
+        round_temperature: true
+        secondary_info_attribute: humidity
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+        - type: tile
+          entity: light.smart_wi_fi_rgbw
+          name: Interior Light
+          vertical: false
+        - type: tile
+          entity: sensor.meter_1c97_temperature
+          name: Living Area
+          vertical: false
+        - type: tile
+          entity: light.smart_wi_fi_dimmer
+          name: Porch Light
+          vertical: false
+        - type: tile
+          entity: sensor.meter_1c97_humidity
+          name: Living Humidity
+          vertical: false
+        - type: tile
+          entity: light.driver_side
+          name: Driver Light
+          vertical: false
+        - type: tile
+          entity: sensor.meter_3732_temperature
+          name: Cabin
+          vertical: false
+        - type: tile
+          entity: light.front
+          name: Head Lights
+          vertical: false
+        - type: tile
+          entity: sensor.meter_3732_humidity
+          name: Cabin Humidity
+          vertical: false
+        - type: tile
+          entity: sensor.outdoor_temperature
+          name: Outdoor Temperature
+          vertical: false
+        - type: tile
+          entity: sensor.outdoor_humidity
+          name: Outdoor Humidity
+          vertical: false
+      - type: markdown
+        content: |
+          # {{ now().strftime('%-I:%M %p') }}
+          {{ now().strftime('%A, %B %-d') }} · {{ states('sensor.van_time_zone') }}
+        card_mod:
+          style:
+            ha-markdown$: |
+              h1 {
+                font-size: 56px !important;
+                line-height: 1 !important;
+                margin: 0 0 8px 0 !important;
+              }
+              p {
+                font-size: 18px !important;
+                margin: 0 !important;
+              }
+            .: |
+              ha-card {
+                text-align: center;
+                padding: 14px 8px;
+              }
+    - type: vertical-stack
+      cards:
+      - type: picture-entity
+        entity: camera.mjpeg_camera
+        camera_view: live
+        show_name: false
+        show_state: false
+        aspect_ratio: '21:9'
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+        - type: vertical-stack
+          cards:
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+            - type: tile
+              entity: binary_sensor.any_battery_problem
+              name: Battery Alert
+              vertical: false
+            - type: tile
+              entity: sensor.battery_shunt_alarm_reason
+              name: Shunt Alarm Reason
+              vertical: false
+            - type: tile
+              entity: binary_sensor.battery_shunt_charging
+              name: Bank Charging
+              vertical: false
+            - type: tile
+              entity: sensor.battery_shunt_temperature
+              name: Battery Temperature
+              vertical: false
+            - type: tile
+              entity: sensor.mppt_70_solar_energy_today
+              name: Solar Yield Today
+              vertical: false
+            - type: tile
+              entity: sensor.dc_dc_xs_yield_today
+              name: DC-DC Yield Today
+              vertical: false
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+            - type: tile
+              entity: sensor.dc_dc_xs_operation_mode
+              name: DC-DC Mode
+              vertical: false
+            - type: tile
+              entity: sensor.mppt_70_operation_mode
+              name: Solar Mode
+              vertical: false
+            - type: tile
+              entity: sensor.shore_power_30a_operation_mode
+              name: Shore Mode
+              vertical: false
+            - type: tile
+              entity: sensor.dc_dc_xs_off_reason
+              name: DC-DC Status
+              vertical: false
+            - type: tile
+              entity: sensor.mppt_70_charger_error
+              name: Solar Error
+              vertical: false
+            - type: tile
+              entity: sensor.shore_power_30a_charger_error
+              name: Shore Error
+              vertical: false
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+            - type: tile
+              entity: sensor.battery_shunt_consumed_ah
+              name: Consumed Ah
+              vertical: false
+            - type: tile
+              entity: sensor.gl_inet_x3000_cpu_temperature
+              name: Router Temperature
+              vertical: false
+            - type: tile
+              entity: sensor.gl_inet_x3000_memory_usage
+              name: Router Memory
+              vertical: false
+            - type: tile
+              entity: sensor.system_monitor_processor_use
+              name: Pi CPU Use
+              vertical: false
+            - type: tile
+              entity: sensor.system_monitor_processor_temperature
+              name: Pi CPU Temperature
+              vertical: false
+            - type: tile
+              entity: sensor.system_monitor_memory_usage
+              name: Pi Memory
+              vertical: false
+        - type: vertical-stack
+          cards:
+          - type: map
+            auto_fit: false
+            show_all: false
+            aspect_ratio: '16:8'
+            entities:
+            - entity: device_tracker.sm_g991u1
+              name: Van
+            - entity: zone.home
+              focus: false
+            hours_to_show: 720
+            default_zoom: 7
+            fit_zones: false
+            cluster: false
+            card_mod:
+              style:
+                ha-map$: "\n          .leaflet-control-container {\n            display:\
+                  \ none !important;\n          }\n        "
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+            - type: tile
+              entity: sensor.van_location_summary
+              name: Location
+              vertical: false
+            - type: tile
+              entity: sensor.gps_127_0_0_1_speed
+              name: Speed
+              vertical: false
+            - type: tile
+              entity: binary_sensor.mjpeg_motion
+              name: Motion
+              vertical: false
+            - type: tile
+              entity: sensor.snapshot_archive_status
+              name: Snapshot Archive
+              vertical: false
+            - type: tile
+              entity: sensor.gps_127_0_0_1_mode
+              name: GPS Fix
+              vertical: false
+            - type: tile
+              entity: input_boolean.drive_mode
+              name: Driving Mode
+              vertical: false
+    card_mod:
+      style: '#root { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) !important;
+        }'

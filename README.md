@@ -66,6 +66,10 @@ The automation files are separated into `location_and_rest`, `dynamic_timezone`,
 
 ### Lovelace dashboards
 
+`homeassistant/dashboards/van-command.yaml` is the active YAML-mode Van Command
+dashboard. Configure it under `lovelace.dashboards` and copy it to the path used
+by that dashboard's `filename` setting.
+
 The dashboard JSON files are exports of Home Assistant `.storage` records:
 
 - `overview.json`: active Overview dashboard (`lovelace.lovelace`).
