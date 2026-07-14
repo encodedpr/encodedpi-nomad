@@ -1,7 +1,7 @@
 [Unit]
 Description=Private Home Assistant reverse tunnel and LM Studio/MQTT forward tunnels
-After=network-online.target
-Wants=network-online.target
+After=network-online.target docker.service
+Wants=network-online.target docker.service
 StartLimitIntervalSec=0
 
 [Service]
