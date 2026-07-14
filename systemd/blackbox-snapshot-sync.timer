@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodically sync motion snapshots to Skynet
+
+[Timer]
+OnBootSec=1min
+OnUnitInactiveSec=5min
+Persistent=true
+RandomizedDelaySec=15s
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+from pathlib import Path
+from datetime import datetime, timezone
+import subprocess, json, re, os
+LOCAL = Path("/home/encoded/containers/homeassist/config/snapshots")
+STATUS = Path("/home/encoded/containers/homeassist/config/snapshot_sync_status.json")
+DESTINATION = "/spool/media/Media/RemoteDVR"
+MAX_IMAGES = 5000
+REMOTE = os.environ["BLACKBOX_REMOTE"]
+SSH_PORT = os.environ.get("BLACKBOX_SSH_PORT", "22")
+SSH_OPTIONS = ["-p", SSH_PORT, "-o", "BatchMode=yes", "-o", "ConnectTimeout=10", "-o", "ServerAliveInterval=10", "-o", "ServerAliveCountMax=2"]
+SSH = ["ssh", *SSH_OPTIONS, REMOTE]
+def write_status(status, local_images, remote_images, message):
+    data={"status":status,"local_images":local_images,"remote_images":remote_images,"last_attempt":datetime.now(timezone.utc).isoformat(),"destination":DESTINATION,"message":message}
+    tmp=STATUS.with_suffix(".tmp"); tmp.write_text(json.dumps(data,separators=(",",":"))); os.replace(tmp,STATUS)
+files=sorted((x for x in LOCAL.iterdir() if x.is_file() and x.suffix.lower() in {".jpg",".jpeg"}),key=lambda x:(x.stat().st_mtime_ns,x.name))
+removed=0
+for path in files[:-MAX_IMAGES] if len(files)>MAX_IMAGES else []:
+    try: path.unlink(); removed+=1
+    except FileNotFoundError: pass
+local_count=min(len(files),MAX_IMAGES)
+write_status("syncing",local_count,None,f"Transfer in progress; pruned {removed} local images")
+rsync_ssh = "ssh " + " ".join(SSH_OPTIONS)
+rsync=["rsync","-rt","--ignore-existing","--partial","--timeout=30","--bwlimit=2048","--include=*.jpg","--include=*.jpeg","--exclude=*","-e",rsync_ssh,str(LOCAL)+"/",REMOTE+":"+DESTINATION+"/"]
+try:
+    result=subprocess.run(rsync,timeout=1800)
+except subprocess.TimeoutExpired:
+    write_status("deferred",local_count,None,"Transfer timed out; will retry")
+    raise SystemExit(0)
+if result.returncode==0:
+    remote=subprocess.run(SSH+["/home/encoded/skynet-blackbox/prune-snapshots.py"],timeout=60,text=True,capture_output=True)
+    match=re.search(r"snapshots=(\d+)",remote.stdout)
+    remote_count=int(match.group(1)) if match else None
+    write_status("synced",local_count,remote_count,"Archive current")
+    print(f"snapshot sync completed remote={remote_count}",flush=True)
+else:
+    write_status("deferred",local_count,None,f"Connection unavailable; retry scheduled (rsync {result.returncode})")
+    print(f"snapshot sync deferred rc={result.returncode}",flush=True)

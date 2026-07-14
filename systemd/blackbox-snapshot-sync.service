@@ -1,0 +1,14 @@
+[Unit]
+Description=Retry local motion snapshot transfer to Skynet
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=encoded
+Group=encoded
+EnvironmentFile=/etc/default/blackbox-snapshot-sync
+ExecStart=/usr/local/sbin/blackbox-snapshot-sync
+Nice=10
+IOSchedulingClass=idle
+TimeoutStartSec=35min
